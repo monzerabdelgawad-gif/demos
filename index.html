@@ -1066,6 +1066,44 @@
             6. For hosted deployments, the dashboard server should accept POST to <code>/api/data</code> and push via WebSocket or SSE — or use localStorage as a local cache
           </div>
         </div>
+ 
+        <!-- WEBHOOK RESPONSE VIEWER -->
+        <div style="margin-top:20px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div class="api-title" style="margin-bottom:0;">⚡ Last Webhook Response</div>
+            <div style="display:flex;gap:8px;">
+              <button onclick="copyResponse()" style="background:rgba(201,168,76,0.08);border:0.5px solid rgba(201,168,76,0.25);border-radius:6px;padding:5px 14px;font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;cursor:pointer;letter-spacing:0.06em;">Copy</button>
+              <button onclick="fetchFromWebhook(true)" style="background:rgba(201,168,76,0.08);border:0.5px solid rgba(201,168,76,0.25);border-radius:6px;padding:5px 14px;font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;cursor:pointer;letter-spacing:0.06em;">↻ Fetch Now</button>
+            </div>
+          </div>
+ 
+          <div style="position:relative;">
+            <!-- status bar -->
+            <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:var(--black);border:0.5px solid var(--border);border-bottom:none;border-radius:10px 10px 0 0;">
+              <div id="resp-status-dot" style="width:7px;height:7px;border-radius:50%;background:var(--gray2);flex-shrink:0;"></div>
+              <div id="resp-status-text" style="font-size:10px;color:var(--gray);letter-spacing:0.12em;text-transform:uppercase;flex:1;">No response yet</div>
+              <div id="resp-timestamp" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gray2);"></div>
+            </div>
+ 
+            <!-- json viewer -->
+            <pre id="resp-viewer" style="
+              background:var(--black);
+              border:0.5px solid var(--border);
+              border-top:none;
+              border-radius:0 0 10px 10px;
+              padding:16px 18px;
+              font-family:'JetBrains Mono',monospace;
+              font-size:11px;
+              color:var(--gray);
+              overflow-x:auto;
+              min-height:120px;
+              max-height:420px;
+              overflow-y:auto;
+              line-height:1.65;
+              white-space:pre;
+            ">Waiting for webhook response…</pre>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1310,14 +1348,57 @@
       }
  
       const now = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      updateResponseViewer(json, false);
       showToast('Data refreshed · ' + now);
  
     } catch(err) {
       console.error('Webhook error:', err);
+      updateResponseViewer(err.toString(), true);
       showToast('Could not reach n8n — check webhook');
     }
  
     if (btn) { btn.disabled = false; btn.textContent = '↻  Refresh Data'; }
+  }
+ 
+  /* ─── RESPONSE VIEWER ─── */
+  function updateResponseViewer(data, isError) {
+    const viewer   = document.getElementById('resp-viewer');
+    const dot      = document.getElementById('resp-status-dot');
+    const statusTx = document.getElementById('resp-status-text');
+    const ts       = document.getElementById('resp-timestamp');
+    if (!viewer) return;
+    const now = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    ts.textContent = now;
+    if (isError) {
+      dot.style.background = 'var(--red)';
+      statusTx.style.color = 'var(--red)';
+      statusTx.textContent = 'ERROR';
+      viewer.style.color   = '#e05c5c';
+      viewer.textContent   = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+    } else {
+      dot.style.background = 'var(--green)';
+      statusTx.style.color = 'var(--green)';
+      statusTx.textContent = '200 OK';
+      viewer.style.color   = 'var(--chrome2)';
+      viewer.innerHTML     = syntaxHighlight(JSON.stringify(data, null, 2));
+    }
+  }
+ 
+  function syntaxHighlight(json) {
+    const escaped = json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return escaped.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|(true|false|null)|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function(match) {
+      let cls = '#7ab8e8';
+      if (/^"/.test(match)) { cls = /:$/.test(match) ? '#c9a84c' : '#85d9a7'; }
+      else if (/true|false/.test(match)) { cls = '#e8c97a'; }
+      else if (/null/.test(match)) { cls = '#e05c5c'; }
+      return '<span style="color:' + cls + '">' + match + '</span>';
+    });
+  }
+ 
+  function copyResponse() {
+    const viewer = document.getElementById('resp-viewer');
+    if (!viewer) return;
+    navigator.clipboard.writeText(viewer.innerText || viewer.textContent).then(() => showToast('Response copied'));
   }
  
   /* Called after login */
