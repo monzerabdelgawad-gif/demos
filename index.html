@@ -802,7 +802,6 @@
     </div>
     <div class="topbar-right">
       <div class="live-dot"><div class="dot"></div> Live</div>
-      <button id="refresh-daily-btn" onclick="fetchDaily()" style="background:rgba(201,168,76,0.08);border:0.5px solid rgba(201,168,76,0.3);border-radius:7px;padding:7px 16px;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;color:#c9a84c;cursor:pointer;letter-spacing:0.06em;transition:all 0.15s;" onmouseover="this.style.background='rgba(201,168,76,0.15)'" onmouseout="this.style.background='rgba(201,168,76,0.08)'">↻  Refresh</button>
       <div class="timestamp" id="clock">—</div>
     </div>
   </header>
@@ -824,6 +823,7 @@
       <div class="section-head">
         <div class="sec-rule"></div>
         <div class="sec-title">Today's Overview</div>
+        <button id="refresh-daily-btn" onclick="fetchDaily()" style="margin-left:auto;background:rgba(201,168,76,0.08);border:0.5px solid rgba(201,168,76,0.25);border-radius:6px;padding:5px 14px;font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;cursor:pointer;letter-spacing:0.08em;transition:all 0.15s;" onmouseover="this.style.background='rgba(201,168,76,0.16)'" onmouseout="this.style.background='rgba(201,168,76,0.08)'">↻ Refresh Daily</button>
       </div>
       <div class="stats-grid">
         <div class="stat-card">
@@ -853,6 +853,13 @@
           <div class="stat-value gold" id="d-conv">—</div>
           <div class="stat-sub">Chats → Orders</div>
           <div class="stat-bg-num">%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💬</div>
+          <div class="stat-label">Avg Msgs / User</div>
+          <div class="stat-value" id="d-avg">—</div>
+          <div class="stat-sub">Daily</div>
+          <div class="stat-bg-num">~</div>
         </div>
       </div>
     </div>
@@ -886,6 +893,7 @@
       <div class="section-head">
         <div class="sec-rule"></div>
         <div class="sec-title">Monthly Overview</div>
+        <button id="refresh-monthly-btn" onclick="fetchMonthly()" style="margin-left:auto;background:rgba(201,168,76,0.08);border:0.5px solid rgba(201,168,76,0.25);border-radius:6px;padding:5px 14px;font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;cursor:pointer;letter-spacing:0.08em;transition:all 0.15s;" onmouseover="this.style.background='rgba(201,168,76,0.16)'" onmouseout="this.style.background='rgba(201,168,76,0.08)'">↻ Refresh Monthly</button>
       </div>
       <div class="stats-grid">
         <div class="stat-card">
@@ -915,6 +923,13 @@
           <div class="stat-value gold" id="m-conv">—</div>
           <div class="stat-sub">Chats → Orders</div>
           <div class="stat-bg-num">%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💬</div>
+          <div class="stat-label">Avg Msgs / User</div>
+          <div class="stat-value" id="m-avg">—</div>
+          <div class="stat-sub">Monthly</div>
+          <div class="stat-bg-num">~</div>
         </div>
       </div>
     </div>
@@ -1190,6 +1205,7 @@
           ? ((d.orders / d.messages_received) * 100).toFixed(1) + '%'
           : '—');
     setText('d-conv', conv);
+    setText('d-avg', d.avg_messages_per_user || '—');
 
     if (d.top_questions && d.top_questions.length) {
       const max = d.top_questions[0].count;
@@ -1210,6 +1226,7 @@
           ? ((m.orders / m.messages_received) * 100).toFixed(1) + '%'
           : '—');
     setText('m-conv', conv);
+    setText('m-avg', m.avg_messages_per_user || '—');
 
     if (m.top_questions && m.top_questions.length) {
       const max = m.top_questions[0].count;
@@ -1346,7 +1363,7 @@
       updateResponseViewer(err.toString(), true);
       showToast('Could not reach n8n — check webhook');
     }
-    if (btn) { btn.disabled = false; btn.textContent = '↻  Refresh'; }
+    if (btn) { btn.disabled = false; btn.textContent = btnId === 'refresh-daily-btn' ? '↻ Refresh Daily' : '↻ Refresh Monthly'; }
   }
 
   function fetchDaily() {
@@ -1365,7 +1382,7 @@
   }
 
   function fetchMonthly() {
-    callWebhook(WEBHOOK_MONTHLY, 'refresh-daily-btn', 'Monthly', function(json) {
+    callWebhook(WEBHOOK_MONTHLY, 'refresh-monthly-btn', 'Monthly', function(json) {
       const m = {
         type: 'monthly_stats',
         messages_received:    json.messages_received    || 0,
