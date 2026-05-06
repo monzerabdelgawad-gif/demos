@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
     :root {
       --black:   #080808;
       --black2:  #111111;
@@ -31,7 +31,7 @@
       --green:   #5ce08a;
       --blue:    #5c9be0;
     }
- 
+
     body {
       font-family: 'Space Grotesk', sans-serif;
       background: var(--black);
@@ -39,7 +39,7 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
- 
+
     /* ─── BACKGROUND GRAIN ─── */
     body::before {
       content: '';
@@ -49,7 +49,7 @@
       pointer-events: none;
       z-index: 0;
     }
- 
+
     /* ─── PASSWORD SCREEN ─── */
     #lock-screen {
       position: fixed;
@@ -64,14 +64,14 @@
       z-index: 9999;
       gap: 32px;
     }
- 
+
     .lock-logo {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 8px;
     }
- 
+
     .lock-blade {
       width: 3px;
       height: 56px;
@@ -79,12 +79,12 @@
       border-radius: 2px;
       animation: bladePulse 2.4s ease-in-out infinite;
     }
- 
+
     @keyframes bladePulse {
       0%, 100% { opacity: 0.5; transform: scaleY(0.85); }
       50% { opacity: 1; transform: scaleY(1); }
     }
- 
+
     .lock-wordmark {
       font-size: 42px;
       font-weight: 800;
@@ -95,14 +95,14 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
- 
+
     .lock-wordmark span {
       background: linear-gradient(135deg, var(--gold2), var(--gold), var(--gold3));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
- 
+
     .lock-sub {
       font-size: 10px;
       letter-spacing: 0.22em;
@@ -110,7 +110,7 @@
       color: var(--gray);
       margin-top: 2px;
     }
- 
+
     .lock-box {
       background: var(--black2);
       border: 0.5px solid var(--gborder);
@@ -123,7 +123,7 @@
       position: relative;
       overflow: hidden;
     }
- 
+
     .lock-box::before {
       content: '';
       position: absolute;
@@ -132,14 +132,14 @@
       background: linear-gradient(90deg, transparent, var(--gold3), var(--gold), var(--gold3), transparent);
       opacity: 0.7;
     }
- 
+
     .lock-label {
       font-size: 11px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--gray);
     }
- 
+
     .lock-input {
       background: var(--black3);
       border: 0.5px solid var(--border);
@@ -152,22 +152,22 @@
       transition: border-color 0.2s;
       letter-spacing: 0.08em;
     }
- 
+
     .lock-input:focus {
       border-color: var(--gborder);
     }
- 
+
     .lock-input.error {
       border-color: var(--red);
       animation: shake 0.3s ease;
     }
- 
+
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
       25% { transform: translateX(-6px); }
       75% { transform: translateX(6px); }
     }
- 
+
     .lock-btn {
       background: linear-gradient(135deg, var(--gold2) 0%, var(--gold) 50%, var(--gold3) 100%);
       border: none;
@@ -181,16 +181,16 @@
       letter-spacing: 0.04em;
       transition: opacity 0.15s;
     }
- 
+
     .lock-btn:hover { opacity: 0.88; }
- 
+
     .lock-err {
       font-size: 11px;
       color: var(--red);
       text-align: center;
       min-height: 14px;
     }
- 
+
     /* ─── MAIN SHELL ─── */
     #app {
       display: flex;
@@ -201,12 +201,12 @@
       visibility: hidden;
       pointer-events: none;
     }
- 
+
     #app.visible {
       visibility: visible;
       pointer-events: all;
     }
- 
+
     /* ─── TOP HEADER ─── */
     .topbar {
       display: flex;
@@ -220,20 +220,20 @@
       top: 0;
       z-index: 100;
     }
- 
+
     .topbar-logo {
       display: flex;
       align-items: center;
       gap: 10px;
     }
- 
+
     .blade-icon {
       width: 3px;
       height: 28px;
       background: linear-gradient(180deg, transparent, var(--gold2), var(--gold), transparent);
       border-radius: 2px;
     }
- 
+
     .tb-wordmark {
       font-size: 20px;
       font-weight: 800;
@@ -244,14 +244,14 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
- 
+
     .tb-wordmark span {
       background: linear-gradient(135deg, var(--gold2), var(--gold));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
- 
+
     .tb-badge {
       font-size: 9px;
       letter-spacing: 0.18em;
@@ -262,13 +262,13 @@
       border-radius: 20px;
       margin-left: 8px;
     }
- 
+
     .topbar-right {
       display: flex;
       align-items: center;
       gap: 20px;
     }
- 
+
     .live-dot {
       display: flex;
       align-items: center;
@@ -278,7 +278,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
- 
+
     .dot {
       width: 6px;
       height: 6px;
@@ -286,18 +286,18 @@
       background: var(--green);
       animation: livePulse 1.8s ease-in-out infinite;
     }
- 
+
     @keyframes livePulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.7); }
     }
- 
+
     .timestamp {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       color: var(--gray);
     }
- 
+
     /* ─── PAGE TABS ─── */
     .tab-bar {
       display: flex;
@@ -306,7 +306,7 @@
       padding: 14px 32px;
       border-bottom: 0.5px solid var(--border);
     }
- 
+
     .tab-btn {
       background: none;
       border: 0.5px solid transparent;
@@ -321,19 +321,19 @@
       cursor: pointer;
       transition: all 0.18s;
     }
- 
+
     .tab-btn:hover { color: var(--white); border-color: var(--border); }
- 
+
     .tab-btn.active {
       background: rgba(201,168,76,0.08);
       border-color: var(--gborder);
       color: var(--gold2);
     }
- 
+
     /* ─── MAIN CONTENT ─── */
     .page { display: none; padding: 28px 32px; flex-direction: column; gap: 24px; }
     .page.active { display: flex; }
- 
+
     /* ─── SECTION HEADERS ─── */
     .section-head {
       display: flex;
@@ -341,27 +341,27 @@
       gap: 10px;
       margin-bottom: 14px;
     }
- 
+
     .sec-rule {
       width: 20px;
       height: 1px;
       background: linear-gradient(90deg, var(--gold), transparent);
     }
- 
+
     .sec-title {
       font-size: 10px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gray);
     }
- 
+
     /* ─── STAT CARDS GRID ─── */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 12px;
     }
- 
+
     .stat-card {
       background: var(--black2);
       border: 0.5px solid var(--border);
@@ -371,9 +371,9 @@
       overflow: hidden;
       transition: border-color 0.2s;
     }
- 
+
     .stat-card:hover { border-color: var(--gborder2); }
- 
+
     .stat-card::after {
       content: '';
       position: absolute;
@@ -382,13 +382,13 @@
       background: linear-gradient(90deg, transparent, var(--gold3), transparent);
       opacity: 0.4;
     }
- 
+
     .stat-icon {
       font-size: 18px;
       margin-bottom: 14px;
       opacity: 0.7;
     }
- 
+
     .stat-label {
       font-size: 9px;
       letter-spacing: 0.18em;
@@ -396,7 +396,7 @@
       color: var(--gray);
       margin-bottom: 6px;
     }
- 
+
     .stat-value {
       font-size: 36px;
       font-weight: 800;
@@ -407,20 +407,20 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
- 
+
     .stat-value.gold {
       background: linear-gradient(135deg, var(--gold2), var(--gold));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
- 
+
     .stat-sub {
       font-size: 11px;
       color: var(--gray);
       margin-top: 5px;
     }
- 
+
     .stat-bg-num {
       position: absolute;
       bottom: -8px;
@@ -432,19 +432,19 @@
       pointer-events: none;
       line-height: 1;
     }
- 
+
     /* ─── DUAL COLS ─── */
     .dual-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
- 
+
     @media (max-width: 860px) {
       .dual-col { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
     }
- 
+
     /* ─── PANEL / LIST CARDS ─── */
     .panel {
       background: var(--black2);
@@ -453,7 +453,7 @@
       overflow: hidden;
       position: relative;
     }
- 
+
     .panel::before {
       content: '';
       position: absolute;
@@ -462,7 +462,7 @@
       background: linear-gradient(90deg, transparent, var(--gold3), var(--gold), var(--gold3), transparent);
       opacity: 0.35;
     }
- 
+
     .panel-head {
       display: flex;
       align-items: center;
@@ -470,7 +470,7 @@
       padding: 16px 22px 14px;
       border-bottom: 0.5px solid var(--border);
     }
- 
+
     .panel-title {
       font-size: 10px;
       font-weight: 600;
@@ -478,7 +478,7 @@
       text-transform: uppercase;
       color: var(--gray);
     }
- 
+
     .panel-badge {
       font-size: 9px;
       font-family: 'JetBrains Mono', monospace;
@@ -488,9 +488,9 @@
       border-radius: 20px;
       letter-spacing: 0.06em;
     }
- 
+
     .rank-list { padding: 8px 0; }
- 
+
     .rank-item {
       display: flex;
       align-items: center;
@@ -499,10 +499,10 @@
       border-bottom: 0.5px solid var(--border);
       transition: background 0.15s;
     }
- 
+
     .rank-item:last-child { border-bottom: none; }
     .rank-item:hover { background: rgba(255,255,255,0.018); }
- 
+
     .rank-num {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
@@ -510,21 +510,21 @@
       color: var(--gold);
       min-width: 22px;
     }
- 
+
     .rank-question {
       flex: 1;
       font-size: 13px;
       color: var(--white);
       line-height: 1.4;
     }
- 
+
     .rank-count {
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       font-weight: 500;
       color: var(--chrome2);
     }
- 
+
     .rank-bar-wrap {
       width: 60px;
       height: 3px;
@@ -532,13 +532,13 @@
       border-radius: 2px;
       overflow: hidden;
     }
- 
+
     .rank-bar {
       height: 100%;
       background: linear-gradient(90deg, var(--gold3), var(--gold));
       border-radius: 2px;
     }
- 
+
     /* ─── PRODUCT CARDS ─── */
     .product-grid {
       display: grid;
@@ -546,7 +546,7 @@
       gap: 10px;
       padding: 16px;
     }
- 
+
     .prod-card {
       background: var(--black3);
       border: 0.5px solid var(--border);
@@ -556,9 +556,9 @@
       overflow: hidden;
       transition: border-color 0.2s;
     }
- 
+
     .prod-card:hover { border-color: var(--gborder2); }
- 
+
     .prod-rank {
       font-family: 'JetBrains Mono', monospace;
       font-size: 9px;
@@ -567,7 +567,7 @@
       text-transform: uppercase;
       margin-bottom: 8px;
     }
- 
+
     .prod-name {
       font-size: 13px;
       font-weight: 700;
@@ -575,7 +575,7 @@
       margin-bottom: 12px;
       line-height: 1.3;
     }
- 
+
     .prod-stat {
       display: flex;
       justify-content: space-between;
@@ -583,25 +583,25 @@
       padding: 5px 0;
       border-top: 0.5px solid var(--border);
     }
- 
+
     .prod-stat:first-of-type { border-top: none; }
- 
+
     .prod-stat-label {
       font-size: 10px;
       color: var(--gray);
       letter-spacing: 0.08em;
     }
- 
+
     .prod-stat-val {
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       font-weight: 500;
       color: var(--chrome2);
     }
- 
+
     .prod-stat-val.gold { color: var(--gold); }
     .prod-stat-val.green { color: var(--green); }
- 
+
     .prod-conv-bar {
       height: 2px;
       background: var(--black);
@@ -609,13 +609,13 @@
       overflow: hidden;
       margin-top: 8px;
     }
- 
+
     .prod-conv-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--gold3), var(--green));
       border-radius: 1px;
     }
- 
+
     /* ─── LOW PERF PANEL ─── */
     .low-item {
       display: flex;
@@ -624,20 +624,20 @@
       padding: 10px 22px;
       border-bottom: 0.5px solid var(--border);
     }
- 
+
     .low-item:last-child { border-bottom: none; }
- 
+
     .low-name {
       font-size: 12px;
       color: var(--chrome3);
     }
- 
+
     .low-val {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       color: var(--gray);
     }
- 
+
     .low-dot {
       width: 6px;
       height: 6px;
@@ -646,7 +646,7 @@
       opacity: 0.6;
       margin-right: 8px;
     }
- 
+
     /* ─── API INFO PANEL ─── */
     .api-panel {
       background: var(--black2);
@@ -656,7 +656,7 @@
       position: relative;
       overflow: hidden;
     }
- 
+
     .api-panel::before {
       content: '';
       position: absolute;
@@ -665,7 +665,7 @@
       background: linear-gradient(90deg, transparent, var(--gold3), var(--gold2), var(--gold), var(--gold3), transparent);
       opacity: 0.6;
     }
- 
+
     .api-title {
       font-size: 10px;
       letter-spacing: 0.18em;
@@ -676,22 +676,22 @@
       align-items: center;
       gap: 8px;
     }
- 
+
     .api-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
- 
+
     @media (max-width: 700px) { .api-grid { grid-template-columns: 1fr; } }
- 
+
     .endpoint-block {
       background: var(--black3);
       border: 0.5px solid var(--border);
       border-radius: 10px;
       padding: 16px 18px;
     }
- 
+
     .ep-label {
       font-size: 9px;
       letter-spacing: 0.14em;
@@ -699,7 +699,7 @@
       color: var(--gray);
       margin-bottom: 8px;
     }
- 
+
     .ep-method {
       display: inline-block;
       font-family: 'JetBrains Mono', monospace;
@@ -712,7 +712,7 @@
       border-radius: 4px;
       margin-bottom: 8px;
     }
- 
+
     .ep-url {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
@@ -720,13 +720,13 @@
       word-break: break-all;
       margin-bottom: 10px;
     }
- 
+
     .ep-desc {
       font-size: 11px;
       color: var(--gray);
       line-height: 1.5;
     }
- 
+
     pre.ep-body {
       background: var(--black);
       border: 0.5px solid var(--border);
@@ -739,11 +739,11 @@
       margin-top: 8px;
       line-height: 1.55;
     }
- 
+
     .ep-key { color: var(--gold3); }
     .ep-str { color: #85d9a7; }
     .ep-num { color: #7ab8e8; }
- 
+
     /* ─── NOTIFICATION TOAST ─── */
     #toast {
       position: fixed;
@@ -763,9 +763,9 @@
       align-items: center;
       gap: 8px;
     }
- 
+
     #toast.show { opacity: 1; transform: translateY(0); }
- 
+
     /* ─── SCROLLBAR ─── */
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: var(--black); }
@@ -773,7 +773,7 @@
   </style>
 </head>
 <body>
- 
+
 <!-- ─── LOCK SCREEN ─── -->
 <div id="lock-screen">
   <div class="lock-logo">
@@ -781,7 +781,7 @@
     <div class="lock-wordmark">Ageni<span>q</span></div>
     <div class="lock-sub">Performance Dashboard</div>
   </div>
- 
+
   <div class="lock-box">
     <div class="lock-label">Access Password</div>
     <input type="password" class="lock-input" id="pwd-input" placeholder="••••••••••" autocomplete="current-password" />
@@ -789,10 +789,10 @@
     <button class="lock-btn" onclick="unlock()">Enter Dashboard</button>
   </div>
 </div>
- 
+
 <!-- ─── MAIN APP ─── -->
 <div id="app">
- 
+
   <!-- TOPBAR -->
   <header class="topbar">
     <div class="topbar-logo">
@@ -802,23 +802,23 @@
     </div>
     <div class="topbar-right">
       <div class="live-dot"><div class="dot"></div> Live</div>
-      <button id="refresh-btn" onclick="fetchFromWebhook(true)" style="background:rgba(201,168,76,0.08);border:0.5px solid rgba(201,168,76,0.3);border-radius:7px;padding:7px 16px;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;color:#c9a84c;cursor:pointer;letter-spacing:0.06em;transition:all 0.15s;" onmouseover="this.style.background='rgba(201,168,76,0.15)'" onmouseout="this.style.background='rgba(201,168,76,0.08)'">↻  Refresh Data</button>
+      <button id="refresh-daily-btn" onclick="fetchDaily()" style="background:rgba(201,168,76,0.08);border:0.5px solid rgba(201,168,76,0.3);border-radius:7px;padding:7px 16px;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;color:#c9a84c;cursor:pointer;letter-spacing:0.06em;transition:all 0.15s;" onmouseover="this.style.background='rgba(201,168,76,0.15)'" onmouseout="this.style.background='rgba(201,168,76,0.08)'">↻  Refresh</button>
       <div class="timestamp" id="clock">—</div>
     </div>
   </header>
- 
+
   <!-- TABS -->
   <div class="tab-bar">
-    <button class="tab-btn active" onclick="switchPage('daily', this)">Daily</button>
-    <button class="tab-btn" onclick="switchPage('monthly', this)">Monthly</button>
+    <button class="tab-btn active" onclick="switchPage('daily', this); fetchDaily()">Daily</button>
+    <button class="tab-btn" onclick="switchPage('monthly', this); fetchMonthly()">Monthly</button>
     <button class="tab-btn" onclick="switchPage('api', this)">API Reference</button>
   </div>
- 
+
   <!-- ══════════════════════════════
        DAILY PAGE
   ══════════════════════════════ -->
   <div class="page active" id="page-daily">
- 
+
     <!-- KPI Row -->
     <div>
       <div class="section-head">
@@ -856,7 +856,7 @@
         </div>
       </div>
     </div>
- 
+
     <!-- Top 5 Questions -->
     <div>
       <div class="section-head">
@@ -873,14 +873,14 @@
         </div>
       </div>
     </div>
- 
+
   </div>
- 
+
   <!-- ══════════════════════════════
        MONTHLY PAGE
   ══════════════════════════════ -->
   <div class="page" id="page-monthly">
- 
+
     <!-- KPI Row -->
     <div>
       <div class="section-head">
@@ -918,7 +918,7 @@
         </div>
       </div>
     </div>
- 
+
     <!-- Top 10 Questions -->
     <div>
       <div class="section-head">
@@ -935,10 +935,10 @@
         </div>
       </div>
     </div>
- 
+
     <!-- Winning Products + Low Perf -->
     <div class="dual-col">
- 
+
       <!-- Top 5 Products -->
       <div>
         <div class="section-head">
@@ -955,7 +955,7 @@
           </div>
         </div>
       </div>
- 
+
       <!-- Low Performers -->
       <div>
         <div class="section-head">
@@ -983,10 +983,10 @@
           </div>
         </div>
       </div>
- 
+
     </div>
   </div>
- 
+
   <!-- ══════════════════════════════
        API REFERENCE PAGE
   ══════════════════════════════ -->
@@ -996,12 +996,12 @@
         <div class="sec-rule"></div>
         <div class="sec-title">n8n HTTP Request Reference</div>
       </div>
- 
+
       <div class="api-panel">
         <div class="api-title">⚙ Endpoint Map — POST Data from n8n</div>
- 
+
         <div class="api-grid">
- 
+
           <!-- DAILY STATS -->
           <div class="endpoint-block">
             <div class="ep-label">01 — Post Daily Stats</div>
@@ -1022,7 +1022,7 @@
   ]
 }</pre>
           </div>
- 
+
           <!-- MONTHLY STATS -->
           <div class="endpoint-block">
             <div class="ep-label">02 — Post Monthly Stats</div>
@@ -1052,9 +1052,9 @@
   ]
 }</pre>
           </div>
- 
+
         </div>
- 
+
         <div style="margin-top:16px; padding:14px 18px; background:var(--black3); border:0.5px solid var(--border); border-radius:10px;">
           <div class="ep-label" style="margin-bottom:8px;">n8n Setup — HTTP Request Node</div>
           <div class="ep-desc" style="color:var(--chrome3); line-height:1.7;">
@@ -1066,7 +1066,7 @@
             6. For hosted deployments, the dashboard server should accept POST to <code>/api/data</code> and push via WebSocket or SSE — or use localStorage as a local cache
           </div>
         </div>
- 
+
         <!-- WEBHOOK RESPONSE VIEWER -->
         <div style="margin-top:20px;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
@@ -1076,7 +1076,7 @@
               <button onclick="fetchFromWebhook(true)" style="background:rgba(201,168,76,0.08);border:0.5px solid rgba(201,168,76,0.25);border-radius:6px;padding:5px 14px;font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600;color:#c9a84c;cursor:pointer;letter-spacing:0.06em;">↻ Fetch Now</button>
             </div>
           </div>
- 
+
           <div style="position:relative;">
             <!-- status bar -->
             <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:var(--black);border:0.5px solid var(--border);border-bottom:none;border-radius:10px 10px 0 0;">
@@ -1084,7 +1084,7 @@
               <div id="resp-status-text" style="font-size:10px;color:var(--gray);letter-spacing:0.12em;text-transform:uppercase;flex:1;">No response yet</div>
               <div id="resp-timestamp" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gray2);"></div>
             </div>
- 
+
             <!-- json viewer -->
             <pre id="resp-viewer" style="
               background:var(--black);
@@ -1107,16 +1107,16 @@
       </div>
     </div>
   </div>
- 
+
 </div>
- 
+
 <!-- TOAST -->
 <div id="toast">⚡ Data updated</div>
- 
+
 <script>
   /* ─── PASSWORD ─── */
   const PASS = 'ageniq1002#';
- 
+
   function unlock() {
     const val = document.getElementById('pwd-input').value;
     const inp = document.getElementById('pwd-input');
@@ -1138,14 +1138,14 @@
       setTimeout(() => inp.classList.remove('error'), 600);
     }
   }
- 
+
   document.addEventListener('keydown', e => {
     if (e.key === 'Enter') unlock();
   });
- 
+
   /* add fade transition to lock screen */
   document.getElementById('lock-screen').style.transition = 'opacity 0.3s';
- 
+
   /* ─── CLOCK ─── */
   function startClock() {
     const el = document.getElementById('clock');
@@ -1155,7 +1155,7 @@
       });
     }, 1000);
   }
- 
+
   /* ─── PAGE SWITCH ─── */
   function switchPage(id, btn) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1163,71 +1163,76 @@
     document.getElementById('page-' + id).classList.add('active');
     btn.classList.add('active');
   }
- 
+
   /* ─── DATA STORE (in-memory — safe in all sandbox environments) ─── */
   const _store = {};
- 
+
   function save(key, val) { _store['aq_' + key] = val; }
   function load(key) { return _store['aq_' + key] || null; }
- 
+
   function loadStored() {
     const daily   = load('daily');
     const monthly = load('monthly');
     if (daily)   renderDaily(daily);
     if (monthly) renderMonthly(monthly);
   }
- 
+
   /* ─── RENDER DAILY ─── */
   function renderDaily(d) {
     setText('d-recv',   fmt(d.messages_received));
     setText('d-sent',   fmt(d.messages_sent));
     setText('d-orders', fmt(d.orders));
- 
-    const conv = d.messages_received > 0
-      ? ((d.orders / d.messages_received) * 100).toFixed(1) + '%'
-      : '—';
+
+    // use conversion_rate from webhook if available, else calculate
+    const conv = d.conversion_rate
+      ? d.conversion_rate
+      : (d.messages_received > 0
+          ? ((d.orders / d.messages_received) * 100).toFixed(1) + '%'
+          : '—');
     setText('d-conv', conv);
- 
+
     if (d.top_questions && d.top_questions.length) {
       const max = d.top_questions[0].count;
       document.getElementById('d-questions').innerHTML =
         d.top_questions.slice(0, 5).map((q, i) => rankRow(i + 1, q.q, q.count, max)).join('');
     }
   }
- 
+
   /* ─── RENDER MONTHLY ─── */
   function renderMonthly(m) {
     setText('m-recv',   fmt(m.messages_received));
     setText('m-sent',   fmt(m.messages_sent));
     setText('m-orders', fmt(m.orders));
- 
-    const conv = m.messages_received > 0
-      ? ((m.orders / m.messages_received) * 100).toFixed(1) + '%'
-      : '—';
+
+    const conv = m.conversion_rate
+      ? m.conversion_rate
+      : (m.messages_received > 0
+          ? ((m.orders / m.messages_received) * 100).toFixed(1) + '%'
+          : '—');
     setText('m-conv', conv);
- 
+
     if (m.top_questions && m.top_questions.length) {
       const max = m.top_questions[0].count;
       document.getElementById('m-questions').innerHTML =
         m.top_questions.slice(0, 10).map((q, i) => rankRow(i + 1, q.q, q.count, max)).join('');
     }
- 
+
     if (m.top_products && m.top_products.length) {
       document.getElementById('m-top-products').innerHTML =
         m.top_products.slice(0, 5).map((p, i) => prodCard(p, i)).join('');
     }
- 
+
     if (m.low_inquiry_products && m.low_inquiry_products.length) {
       document.getElementById('m-low-products').innerHTML =
         m.low_inquiry_products.map(p => lowRow(p.name, p.inquiries, 'inquiries')).join('');
     }
- 
+
     if (m.low_order_products && m.low_order_products.length) {
       document.getElementById('m-low-orders').innerHTML =
         m.low_order_products.map(p => lowRow(p.name, p.orders, 'orders')).join('');
     }
   }
- 
+
   /* ─── TEMPLATES ─── */
   function rankRow(num, question, count, max) {
     const pct = max > 0 ? Math.round((count / max) * 100) : 0;
@@ -1239,7 +1244,7 @@
         <div class="rank-count">${fmt(count)}</div>
       </div>`;
   }
- 
+
   function prodCard(p, i) {
     const conv = p.inquiries > 0 ? ((p.orders / p.inquiries) * 100).toFixed(0) : 0;
     const labels = ['🥇 Rank #1','🥈 Rank #2','🥉 Rank #3','Rank #4','Rank #5'];
@@ -1264,7 +1269,7 @@
         </div>
       </div>`;
   }
- 
+
   function lowRow(name, val, label) {
     return `
       <div class="low-item">
@@ -1275,29 +1280,29 @@
         <div class="low-val">${fmt(val)} ${label}</div>
       </div>`;
   }
- 
+
   /* ─── HELPERS ─── */
   function setText(id, val) {
     const el = document.getElementById(id);
     if (el) el.textContent = val;
   }
- 
+
   function fmt(n) {
     if (n === undefined || n === null) return '—';
     return Number(n).toLocaleString();
   }
- 
+
   function esc(s) {
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
- 
+
   function showToast(msg) {
     const t = document.getElementById('toast');
     t.textContent = '⚡ ' + msg;
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 3000);
   }
- 
+
   /* ─── PUBLIC API — called by n8n or injected script ─── */
   window.injectData = function(payload) {
     if (!payload || !payload.type) return;
@@ -1311,56 +1316,76 @@
       showToast('Monthly data updated');
     }
   };
- 
+
   /* postMessage bridge — n8n can open the page in an iframe and postMessage */
   window.addEventListener('message', function(e) {
     if (e.data && e.data.type) window.injectData(e.data);
   });
- 
+
   /* ─── WEBHOOK CONFIG ─── */
-  const WEBHOOK_URL = 'https://primary-production-b389b.up.railway.app/webhook-test/9d3b7ec8-4e87-4fbc-841c-dfe7a5cf7266';
- 
-  async function fetchFromWebhook(isManual) {
-    const btn = document.getElementById('refresh-btn');
+  const WEBHOOK_DAILY   = 'https://primary-production-b389b.up.railway.app/webhook-test/9d3b7ec8-4e87-4fbc-841c-dfe7a5cf7266';
+  const WEBHOOK_MONTHLY = 'https://primary-production-b389b.up.railway.app/webhook-test/f7f671c4-9e69-41ae-9a62-d9a5f2aad2f1';
+
+  async function callWebhook(url, btnId, label, onSuccess) {
+    const btn = document.getElementById(btnId);
     if (btn) { btn.disabled = true; btn.textContent = 'Loading…'; }
- 
     try {
-      const res = await fetch(WEBHOOK_URL, {
+      const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ trigger: isManual ? 'manual' : 'login', ts: Date.now() })
+        body: JSON.stringify({ trigger: 'fetch', ts: Date.now() })
       });
- 
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const json = await res.json();
- 
-      // support both {daily:{...}, monthly:{...}} and flat {type:'daily_stats',...}
-      const daily   = json.daily   || (json.type === 'daily_stats'   ? json : null);
-      const monthly = json.monthly || (json.type === 'monthly_stats' ? json : null);
- 
-      if (daily) {
-        save('daily', daily);
-        renderDaily(daily);
-      }
-      if (monthly) {
-        save('monthly', monthly);
-        renderMonthly(monthly);
-      }
- 
-      const now = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
       updateResponseViewer(json, false);
-      showToast('Data refreshed · ' + now);
- 
+      onSuccess(json);
+      const now = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      showToast(label + ' refreshed · ' + now);
     } catch(err) {
       console.error('Webhook error:', err);
       updateResponseViewer(err.toString(), true);
       showToast('Could not reach n8n — check webhook');
     }
- 
-    if (btn) { btn.disabled = false; btn.textContent = '↻  Refresh Data'; }
+    if (btn) { btn.disabled = false; btn.textContent = '↻  Refresh'; }
   }
- 
-  /* ─── RESPONSE VIEWER ─── */
+
+  function fetchDaily() {
+    callWebhook(WEBHOOK_DAILY, 'refresh-daily-btn', 'Daily', function(json) {
+      const d = {
+        type: 'daily_stats',
+        messages_received: json.messages_received || 0,
+        messages_sent:     json.messages_sent     || 0,
+        orders:            json.orders            || 0,
+        conversion_rate:   json.conversion_rate   || '0%',
+        top_questions:     json.top_questions     || []
+      };
+      save('daily', d);
+      renderDaily(d);
+    });
+  }
+
+  function fetchMonthly() {
+    callWebhook(WEBHOOK_MONTHLY, 'refresh-daily-btn', 'Monthly', function(json) {
+      const m = {
+        type: 'monthly_stats',
+        messages_received:    json.messages_received    || 0,
+        messages_sent:        json.messages_sent        || 0,
+        orders:               json.orders               || 0,
+        conversion_rate:      json.conversion_rate      || '0%',
+        top_questions:        json.top_questions        || [],
+        top_products:         json.top_products         || [],
+        low_inquiry_products: json.low_inquiry_products || [],
+        low_order_products:   json.low_order_products   || []
+      };
+      save('monthly', m);
+      renderMonthly(m);
+    });
+  }
+
+  /* used by login button */
+  function fetchFromWebhook() { fetchDaily(); }
+
+/* ─── RESPONSE VIEWER ─── */
   function updateResponseViewer(data, isError) {
     const viewer   = document.getElementById('resp-viewer');
     const dot      = document.getElementById('resp-status-dot');
@@ -1383,7 +1408,7 @@
       viewer.innerHTML     = syntaxHighlight(JSON.stringify(data, null, 2));
     }
   }
- 
+
   function syntaxHighlight(json) {
     const escaped = json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     return escaped.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|(true|false|null)|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function(match) {
@@ -1394,13 +1419,13 @@
       return '<span style="color:' + cls + '">' + match + '</span>';
     });
   }
- 
+
   function copyResponse() {
     const viewer = document.getElementById('resp-viewer');
     if (!viewer) return;
     navigator.clipboard.writeText(viewer.innerText || viewer.textContent).then(() => showToast('Response copied'));
   }
- 
+
   /* Called after login */
   loadStored();
 </script>
